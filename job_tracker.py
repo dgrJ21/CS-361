@@ -65,3 +65,56 @@ class JobTrackerApp:
         
         self.build_applications_tab()
         self.build_contacts_tab()
+
+    def build_applications_tab(self):
+
+        header = ttk.Frame(self.applications_tab)
+        header.pack(fill=tk.X, pady=(0, 10))
+        
+        ttk.Label(header, text="Job Applications", font=('Arial', 16, 'bold')).pack(side=tk.LEFT)
+        
+        ttk.Button(header, text="+ Add New", command=self.show_add_application_modal).pack(side=tk.RIGHT)
+        
+        columns = ('company', 'role', 'status', 'date_applied', 'salary', 'last_updated')
+        
+        self.app_tree = ttk.Treeview(self.applications_tab, columns=columns, show='headings', height=20)
+        
+        self.app_tree.heading('company', text='Company')
+        self.app_tree.heading('role', text='Role')
+        self.app_tree.heading('status', text='Status')
+        self.app_tree.heading('date_applied', text='Date Applied')
+        self.app_tree.heading('salary', text='Salary Range')
+        self.app_tree.heading('last_updated', text='Last Updated')
+        
+        self.app_tree.column('company', width=150)
+        self.app_tree.column('role', width=150)
+        self.app_tree.column('status', width=150)
+        self.app_tree.column('date_applied', width=100)
+        self.app_tree.column('salary', width=120)
+        self.app_tree.column('last_updated', width=100)
+
+        scrollbar = ttk.Scrollbar(self.applications_tab, orient=tk.VERTICAL, command=self.app_tree.yview)
+        self.app_tree.configure(yscrollcommand=scrollbar.set)
+        
+        self.app_tree.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        
+        self.app_tree.bind('<Double-1>', self.show_application_detail)
+
+        self.refresh_applications_list()
+    
+    
+    def refresh_applications_list(self):
+
+        for item in self.app_tree.get_children():
+            self.app_tree.delete(item)
+        
+        for app in self.applications:
+            self.app_tree.insert('', tk.END, iid=app['id'], values=(
+                app['company'],
+                app['role'],
+                app['status'],
+                app['date_applied'],
+                app['salary_range'],
+                app['last_updated']
+            ))
