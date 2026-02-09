@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "company": "bentley systems",
+    "role": "software engineer",
+    "salary_range": "120000",
+    "date_applied": "2026-02-09",
+    "status": "Applied",
+    "notes": "some notes go here",
+    "last_updated": "2026-02-09 17:24"
+  }
+]

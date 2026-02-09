@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "name": "John Doe",
+    "company": "Amazon",
+    "role": "Engineer",
+    "relationship": "New Connection",
+    "notes": "Met at conference",
+    "last_updated": "2026-02-09 17:24"
+  }
+]
