@@ -40,5 +40,28 @@ def generate_id(data_list):
 
     return max(item['id'] for item in data_list) + 1
 
+class JobTrackerApp:
+    def __init__(self, root):
 
+        self.root = root
+        self.root.title("Job Tracker - Sprint 1")  # Window title
+        self.root.geometry("900x600")  # Window size: 900 pixels wide, 600 tall
+        
+        self.applications = load_data(APPLICATIONS_FILE)
+        self.contacts = load_data(CONTACTS_FILE)
+        
+        self.main_frame = ttk.Frame(root)
 
+        self.main_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+
+        self.notebook = ttk.Notebook(self.main_frame)
+        self.notebook.pack(fill=tk.BOTH, expand=True)
+        
+        self.applications_tab = ttk.Frame(self.notebook)
+        self.contacts_tab = ttk.Frame(self.notebook)
+        
+        self.notebook.add(self.applications_tab, text="Job Applications")
+        self.notebook.add(self.contacts_tab, text="Networking Contacts")
+        
+        self.build_applications_tab()
+        self.build_contacts_tab()
