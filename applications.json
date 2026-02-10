@@ -8,5 +8,15 @@
     "status": "Applied",
     "notes": "some notes go here",
     "last_updated": "2026-02-09 17:24"
+  },
+  {
+    "id": 2,
+    "company": "Cisco",
+    "role": "Engineer",
+    "salary_range": "130000",
+    "date_applied": "2026-02-09",
+    "status": "Applied",
+    "notes": "",
+    "last_updated": "2026-02-09 22:06"
   }
 ]
